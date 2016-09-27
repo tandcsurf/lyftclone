@@ -34,9 +34,8 @@ http.createServer((req, res) => {
 //parameters for the head of the response
   res.writeHead(200, {
     'Content-Type': 'text/plain',
-    'Access-Control-Allow-Origin': 'http://localhost:8000'
+    'Access-Control-Allow-Origin': 'https://baf9ec3f.ngrok.io/'
   });
-  res.setHeader('Access-Control-Allow-Origin', 'https://baf9ec3f.ngrok.io/')
 
   //URL after stripping default forward slash
   var url = req.url.slice(1);
