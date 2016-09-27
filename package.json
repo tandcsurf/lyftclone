@@ -1,0 +1,20 @@
+{
+  "name": "lyftclone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha ./spec/integration/server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tandcsurf/lyftclone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tandcsurf/lyftclone/issues"
+  },
+  "homepage": "https://github.com/tandcsurf/lyftclone#readme"
+}

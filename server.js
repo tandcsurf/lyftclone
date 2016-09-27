@@ -28,6 +28,7 @@
 const http = require('http');
 const PORT = 1337;
 //create a server with a response handler function as a callback, because node.
+var pickups = ["20 whatever street", "30 whatever avenue"];
 http.createServer((req, res) => {
 //parameters for the head of the response
   res.writeHead(200, {
@@ -35,7 +36,6 @@ http.createServer((req, res) => {
   });
   //URL after stripping default forward slash
   var url = req.url.slice(1);
-  var pickups = ["22 whatever street", "23 whatever street"];
   var onAddressAvail;
   urlTest(url);
   //is it a driver API call or passenger API call? test for driver first
@@ -43,6 +43,12 @@ http.createServer((req, res) => {
     if (url === "pickups?") {
       // check pickups array, return oldest address to driver client
       onAddressAvail = pickups[0];
+      if (onAddressAvail === undefined) {
+        onAddressAvail = "No pickups needed, sorry dude.";
+      }
+      pickups.shift();
+
+      console.log(pickups);
       //further functionality: create "accept job" button to remove that address from array
     }
   //if a passenger API call, and the address contains a number, store address in pickups
@@ -56,6 +62,7 @@ http.createServer((req, res) => {
         //display a verification of the address submitted to the passenger client
         onAddressAvail = "Sending a driver to you at: " + pickups[pickups.length - 1];
         console.log(pickups[0]);
+        console.log(pickups);
       }
       else {
         onAddressAvail = "Address must contain a number, followed by the street name, followed by street type"
