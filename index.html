@@ -1,1 +1,43 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
 <p>Hello</p>
+<div id="driverOutput">
+<p id="addressForDriver"></p>
+</div>
+<button id="driverLook" onclick="checkPickups()">Check For Pickups</button>
+</body>
+<script>
+'use strict'
+function checkPickups() {
+  let url = "http://baf9ec3f.ngrok.io";
+  console.log(url);
+  function handleData(data) {
+    let result = data;
+    console.log("didfuncwork");
+    document.getElementById("addressForDriver").innerHTML = result;
+    console.log(result);
+    //console.log(document.getElementById("addressForDriver".innerHTML));
+  }
+
+  $.ajax(
+    {
+      type: "GET",
+      url: url,
+      dataType: 'json',
+      complete: function (data) {
+        console.log("complete worked");
+        let result = data;
+        document.getElementById("addressForDriver").innerHTML = result;
+        console.log(result);
+      },
+      success: handleData,
+      fail: function() {
+        console.log("request to server failed");
+      }
+    });
+}
+</script>
+</html>

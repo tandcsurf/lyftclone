@@ -26,13 +26,16 @@
 // ***improvment2: create button "off duty" to terminate the 30 second request cycle.
 
 const http = require('http');
+const cors = require('cors');
 const PORT = 1337;
 //create a server with a response handler function as a callback, because node.
 var pickups = ["20 whatever street", "30 whatever avenue"];
 http.createServer((req, res) => {
 //parameters for the head of the response
   res.writeHead(200, {
-  'Content-Type': 'text/plain'
+  'Content-Type': 'text/plain',
+  'Access-Control-Allow-Origin': 'http://localhost:8000'
+
   });
   //URL after stripping default forward slash
   var url = req.url.slice(1);
@@ -48,7 +51,7 @@ http.createServer((req, res) => {
       }
       pickups.shift();
 
-      console.log(pickups);
+      //console.log(pickups);
       //further functionality: create "accept job" button to remove that address from array
     }
   //if a passenger API call, and the address contains a number, store address in pickups
@@ -61,7 +64,7 @@ http.createServer((req, res) => {
         pickups.push(url);
         //display a verification of the address submitted to the passenger client
         onAddressAvail = "Sending a driver to you at: " + pickups[pickups.length - 1];
-        console.log(pickups[0]);
+        //console.log(pickups[0]);
         console.log(pickups);
       }
       else {
