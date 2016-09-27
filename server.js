@@ -34,7 +34,7 @@ http.createServer((req, res) => {
 //parameters for the head of the response
   res.writeHead(200, {
     'Content-Type': 'text/plain',
-    'Access-Control-Allow-Origin': 'https://baf9ec3f.ngrok.io/'
+    'Access-Control-Allow-Origin': '*'
   });
 
   //URL after stripping default forward slash
